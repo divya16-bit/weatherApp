@@ -51,14 +51,16 @@ $sendLocationButton.addEventListener('click', () => {
            search.value = latitude+' ,'+longitude
            messageOne.textContent = 'Loading...'
            messageTwo.textContent = ''
-             
-           fetch('//api.weatherstack.com/current?access_key=5b5d05a76dc826d05368864ceea10b30&query='+ latitude + ','+ longitude).then((response)=> {
-                response.json().then((data) => {
+           fetch('https://api.mapbox.com/geocoding/v5/mapbox.places/'+longitude+','+latitude+'.json?access_token=pk.eyJ1IjoiZGcwMDciLCJhIjoiY2xpZWVxaTlvMHphazNmcW82YnZpOHhjdSJ9.pYgO1uWy2WnWfM-5I6Os_A').then((response) => {    
+           response.json().then((data) => {
                 if(data.error){
                   messageOne.textContent = data.error
                 }
                 else{
-                    const location = data.location.name
+                    const locality  = data.features[0].place_name.split(',')
+                    const len = locality.length - 3
+                    const location = locality.slice(len, locality.length);
+                    console.log(locality)
                     fetch('/weather?address='+ location).then((response)=> {
                          response.json().then((data) => {
                          if(data.error){
