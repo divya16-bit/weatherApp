@@ -23,9 +23,10 @@ const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
 
+
 app.get('', (req, res) => {
     res.render('index', {
-        title: 'Weather',
+        title: 'WeatherApp',
         name: 'Divya'
     })
 })
@@ -41,7 +42,7 @@ app.get('/help', (req, res) =>{
     res.render('help',{
         title: 'Help Page',
         name: 'Divya',
-        email: 'gandhi.hemani@gmail.com'
+        email: '16gandhi.hemani@gmail.com'
     })
 })
 
@@ -65,16 +66,9 @@ app.get('/weather', (req,res) => {
                 address: req.query.address
             })
       })
+      
     })
 })
-
-app.get('/products', (req, res) =>{
-    console.log(req.query)
-    res.send({
-        products: []
-    })
-})
-
 
 app.get('/help/*', (req, res) => {
     res.render('404-page',{
