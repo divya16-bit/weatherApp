@@ -52,7 +52,7 @@ $sendLocationButton.addEventListener('click', () => {
            messageOne.textContent = 'Loading...'
            messageTwo.textContent = ''
              
-           fetch('http://api.weatherstack.com/current?access_key=5b5d05a76dc826d05368864ceea10b30&query='+ latitude + ','+ longitude).then((response)=> {
+           fetch('//api.weatherstack.com/current?access_key=5b5d05a76dc826d05368864ceea10b30&query='+ latitude + ','+ longitude).then((response)=> {
                 response.json().then((data) => {
                 if(data.error){
                   messageOne.textContent = data.error
